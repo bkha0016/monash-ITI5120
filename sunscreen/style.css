@@ -19,6 +19,15 @@ body {
     height: 100%;
 }
 
+
+canvas {
+	position: absolute;
+	display: flex;
+	align-items: left;
+	justify-content: left;
+}
+
+
 /** 
 * Vista BG
 */
@@ -26,7 +35,7 @@ body {
 	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url("beachwallpaper.jpg");
+    /*background-image: url("beachwallpaper.jpg");*/
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -36,6 +45,30 @@ body.rest-mode #vista-bg {
 	filter: blur(5px) grayscale(0.6) brightness(0.5);
 }
 
+/*
+Video Capture Real Time Motion
+*/
+
+
+/*
+#feh-video {
+	position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 55px 25px 25px 25px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.29);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(7.7px);
+	-webkit-backdrop-filter: blur(7.7px);
+	border: 1px solid rgba(255, 255, 255, 0.64);
+	display: flex;
+	justify-content: left;
+	align-items: left;
+
+}
+*/
 
 /** 
 * Pomodoro 
@@ -52,6 +85,7 @@ body.rest-mode #vista-bg {
 	backdrop-filter: blur(7.7px);
 	-webkit-backdrop-filter: blur(7.7px);
 	border: 1px solid rgba(255, 255, 255, 0.64);
+	
 }
 
 	/** 

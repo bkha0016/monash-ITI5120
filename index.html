@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Capture</title>
+</head>
+<body>
+    <h1>Camera Capture</h1>
+    <form action="/capture" method="POST">
+        <button type="submit">Capture Image</button>
+    </form>
+
+    <h2>Analysis Result:</h2>
+    <div id="result"></div>
+
+    <h2>Captured Image:</h2>
+    <img id="capturedImage" src="" style="max-width: 500px; max-height: 500px;">
+    
+    <script>
+        // Function to update the analysis result
+        function updateResult(result) {
+            document.getElementById("result").innerText = result;
+        }
+
+        // Function to update the captured image
+        function updateCapturedImage(imageUrl) {
+            document.getElementById("capturedImage").src = imageUrl;
+        }
+    </script>
+</body>
+</html>
