@@ -32,6 +32,31 @@ const formatCurrentWeather = (data) => {
         sunset, details, icon, speed};
 
 };
+/* This is the UV data API section */
+// accessing the current UV data
+const formatCurrentUV = (data) => {
+    const {
+        result: {
+            uv, uv_time, uv_max, uv_max_time, ozone_time,
+        safe_exposure_time,
+        sun_info: {sun_times, sun_position}
+        }
+    } = data;
+
+
+    return {uv, uv_time, uv_max, uv_max_time, ozone_time, 
+        safe_exposure_time, sun_times, sun_position};
+};
+
+var myHeaders = new Headers();
+myHeaders.append("x-access-token", "openuv-lijrliuzfspp-io");
+myHeaders.append("Content-Type", "application/json");
+
+var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+};
 
 /*
 // not going to use it because the forecast doesnt work in the free plan
@@ -67,23 +92,24 @@ const getFormattedWeatherData = async (searchParams) => {
     
     const {lat, lon} = formattedCurrentWeather;
     
-    /*
-    const formattedForecastWeather = await getWeatherData('forecast', {
-        lat, lon, exclude:'current,minutely,alerts', 
-        units: searchParams.units,
-    }).then(formatForecastWeather);
-    */
+    const response = await fetch(`https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lon}&alt=100&dt=`, requestOptions);
+    const result = await response.json();
+    const formattedCurrentUV = formatCurrentUV(result);
+    console.log(formattedCurrentUV);
+    window.formattedCurrentUV = formattedCurrentUV;
 
-    return formattedCurrentWeather;
+    return {...formattedCurrentWeather, ...formattedCurrentUV};
 };
 
 const formatToLocalTime = (secs, zone, format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
 const iconUrlFromCode = (code) => `https://openweathermap.org/img/wn/${code}@2x.png`;
 
+const convertTimeToHoursMinutes = (timeString) => new Date(timeString).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 
 export default getFormattedWeatherData;
 
-export {formatToLocalTime, iconUrlFromCode};
+export {formatToLocalTime, iconUrlFromCode, convertTimeToHoursMinutes};
 
 

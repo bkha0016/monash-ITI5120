@@ -6,9 +6,10 @@ import {
     UilTear,
     UilWind,
     UilSun,
+    UilBrightnessPlus,
     UilSunset,
 } from "@iconscout/react-unicons";
-import { formatToLocalTime, iconUrlFromCode } from '../services/weatherService';
+import { formatToLocalTime, iconUrlFromCode, getFormattedWeatherData, convertTimeToHoursMinutes} from '../services/weatherService';
 
 function TemperatureAndDetails({weather: {
     details, icon, temp, temp_min, temp_max, sunrise, sunset,
@@ -21,10 +22,12 @@ function TemperatureAndDetails({weather: {
     </div>
 
     <div className='flex flex-row items-center justify-between text-white py-3'>
-        <img src={iconUrlFromCode(icon)} alt="" className='w-20'
-        />
+        <img src={iconUrlFromCode(icon)} alt="" className='w-20'/>
         {/*TODO: Input for the UV index level here!*/}
-        <p className='text-5xl'> {temp.toFixed()}℃</p>
+        <div className="flex flex-col space-y-2 align-middle">
+        <p className='text-1xl'>UV index: </p>
+        <p className='text-5xl'> {window.formattedCurrentUV?.uv_max.toFixed(1)}</p>
+        </div>
         <div className="flex flex-col space-y-2">
 
             <div className='flex font-light text-sn 
@@ -46,6 +49,13 @@ function TemperatureAndDetails({weather: {
                 <UilWind size={18} className="mr-1" />
                 Wind:
                 <span className='font-medium ml-1'>{speed.toFixed()} km/h</span>
+            </div>
+
+            <div className='flex font-light text-sn 
+            items-center justify-center'>
+                <UilBrightnessPlus size={18} className="mr-1" />
+                UV Max Time:
+                <span className='font-medium ml-1'>{convertTimeToHoursMinutes(window.formattedCurrentUV?.uv_max_time)}</span>
             </div>
         </div>
     </div>
