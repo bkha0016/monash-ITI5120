@@ -1,6 +1,8 @@
 //TODO: formatCurrentUV function cannot work because it wrongly parse the json
 //requires fixing....
 
+import { setUVData } from 'UVData.jsx';
+
 const formatCurrentUV = (data) => {
     const {
         result: {
@@ -9,6 +11,7 @@ const formatCurrentUV = (data) => {
         sun_info: {sun_times, sun_position}
         }
     } = data;
+
 
     return {uv, uv_time, uv_max, uv_max_time, ozone_time, 
         safe_exposure_time, sun_times, sun_position};
@@ -25,7 +28,7 @@ var requestOptions = {
 };
 
 
-async function fetchDataUV(lat, lng) {
+const fetchDataUV = async function (lat, lng) {
     try {
         const response = await fetch(`https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lng}&alt=100&dt=`, requestOptions);
         const result = await response.json();
@@ -41,10 +44,16 @@ async function fetchDataUV(lat, lng) {
 
 
 // Bali uv-index data
+/*
 fetchDataUV(-8.409518, 115.188916)
     .then((formattedResult) => {
         console.log(formattedResult.uv);
         console.log(formattedResult.uv_time);
     });
+*/
 
-console.log(result.uv);
+fetchDataUV(-8.409518, 115.188916);
+
+console.log(uvValue, uvTimeValue, uvMaxValue);
+
+
