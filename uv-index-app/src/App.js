@@ -7,6 +7,7 @@ import TemperatureAndDetails from './components/TemperatureAndDetails';
 import Forecast from './components/Forecast';
 import getFormattedWeatherData from './services/weatherService';
 import { useEffect, useState } from 'react';
+import Map from './components/Map';
 import { data } from 'autoprefixer';
 
 function App() {
@@ -52,6 +53,8 @@ function App() {
 
         <Forecast title="hourly forecast"/>
         <Forecast title="daily forecast"/>
+
+        <Map/>
         
       </div>
       )}
