@@ -7,6 +7,7 @@ import TemperatureAndDetails from './components/TemperatureAndDetails';
 import Forecast from './components/Forecast';
 import getFormattedWeatherData from './services/weatherService';
 import { useEffect, useState } from 'react';
+import Map from './components/Map';
 import { data } from 'autoprefixer';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
   
   return (
     // creating the screen with shadow top
+    // TODO: add dynamic map features below daily forecast
     <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 
     bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
 
@@ -51,6 +53,9 @@ function App() {
 
         <Forecast title="hourly forecast"/>
         <Forecast title="daily forecast"/>
+
+        <Map/>
+        
       </div>
       )}
      </div>

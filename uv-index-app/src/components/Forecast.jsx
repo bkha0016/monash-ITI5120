@@ -66,6 +66,7 @@ function Forecast({title}) {
         </div>
 
     </div>
+    <hr className='my-5' />
     
   
   </div>

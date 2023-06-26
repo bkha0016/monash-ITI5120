@@ -97,6 +97,7 @@ const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentUV = formatCurrentUV(result);
     console.log(formattedCurrentUV);
     window.formattedCurrentUV = formattedCurrentUV;
+    window.formattedCurrentWeather = formattedCurrentWeather;
 
     return {...formattedCurrentWeather, ...formattedCurrentUV};
 };
