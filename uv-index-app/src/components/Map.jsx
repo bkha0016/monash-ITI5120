@@ -2,360 +2,22 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 
 function Map() {
-    //const isMobile = useMediaQuery('(min-width:600px)');
-    console.log(window.formattedCurrentWeather?.lat);
-
+    // initializes the coordinates {lat, lon} from the currentweather API json file
     const coordinates = { lat: window.formattedCurrentWeather?.lat, lng: window.formattedCurrentWeather?.lon };
 
-    // Custom map style
+    // Custom map style ~ white glossy map kinda style
     const mapStyle = [
         {
             "featureType": "all",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "on"
-                }
-            ]
-        },
-        {
-            "featureType": "all",
-            "elementType": "labels",
-            "stylers": [
-                {
-                    "visibility": "off"
-                },
-                {
-                    "saturation": "-100"
-                }
-            ]
-        },
-        {
-            "featureType": "all",
-            "elementType": "labels.text.fill",
-            "stylers": [
-                {
-                    "saturation": 36
-                },
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 40
-                },
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "all",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-                {
-                    "visibility": "off"
-                },
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 16
-                }
-            ]
-        },
-        {
-            "featureType": "all",
-            "elementType": "labels.icon",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "administrative",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 20
-                }
-            ]
-        },
-        {
-            "featureType": "administrative",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 17
-                },
-                {
-                    "weight": 1.2
-                }
-            ]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 20
-                }
-            ]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#4d6059"
-                }
-            ]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#4d6059"
-                }
-            ]
-        },
-        {
-            "featureType": "landscape.natural",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#4d6059"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "lightness": 21
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#4d6059"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#4d6059"
-                }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "visibility": "on"
-                },
-                {
-                    "color": "#7f8d89"
-                }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                }
-            ]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                },
-                {
-                    "lightness": 17
-                }
-            ]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                },
-                {
-                    "lightness": 29
-                },
-                {
-                    "weight": 0.2
-                }
-            ]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 18
-                }
-            ]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                }
-            ]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                }
-            ]
-        },
-        {
-            "featureType": "road.local",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 16
-                }
-            ]
-        },
-        {
-            "featureType": "road.local",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                }
-            ]
-        },
-        {
-            "featureType": "road.local",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#7f8d89"
-                }
-            ]
-        },
-        {
-            "featureType": "transit",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 19
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "color": "#2b3638"
-                },
-                {
-                    "visibility": "on"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#2b3638"
-                },
-                {
-                    "lightness": 17
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#24282b"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#24282b"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "labels",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
             "elementType": "labels.text",
             "stylers": [
                 {
-                    "visibility": "off"
+                    "color": "#878787"
                 }
             ]
         },
         {
-            "featureType": "water",
-            "elementType": "labels.text.fill",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
+            "featureType": "all",
             "elementType": "labels.text.stroke",
             "stylers": [
                 {
@@ -364,21 +26,53 @@ function Map() {
             ]
         },
         {
-            "featureType": "water",
-            "elementType": "labels.icon",
+            "featureType": "landscape",
+            "elementType": "all",
             "stylers": [
                 {
-                    "visibility": "off"
+                    "color": "#f9f5ed"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "color": "#f5f5f5"
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#c9c9c9"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "color": "#aee0f4"
                 }
             ]
         }
     ];
 
+    // TODO: add marker clustering in google map react
 
     return (
         <div style={{height: '50vh', width:'100%'}}>
+            {/*
+            premium API: AIzaSyCSCMCccwnkJz1DeaEJmwjCggR6y42jjOo 
+            FREE API: AIzaSyAqVssBqzYYWmvEAnog9Q_Hy_JmA48_2Bc
+            */}
             <GoogleMapReact
-                bootstrapURLKeys={{key: 'AIzaSyAqVssBqzYYWmvEAnog9Q_Hy_JmA48_2Bc'}}
+                bootstrapURLKeys={{key: 'AIzaSyCSCMCccwnkJz1DeaEJmwjCggR6y42jjOo'}}
                 center={coordinates}
                 defaultZoom={10}
                 options={{styles: mapStyle,}}
