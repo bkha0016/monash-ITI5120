@@ -37,14 +37,14 @@ const formatCurrentWeather = (data) => {
 const formatCurrentUV = (data) => {
     const {
         result: {
-            uv, uv_time, uv_max, uv_max_time, ozone_time,
+            uv, uv_time, uv_max, uv_max_time, ozone, ozone_time,
         safe_exposure_time,
         sun_info: {sun_times, sun_position}
         }
     } = data;
 
 
-    return {uv, uv_time, uv_max, uv_max_time, ozone_time, 
+    return {uv, uv_time, uv_max, uv_max_time, ozone, ozone_time, 
         safe_exposure_time, sun_times, sun_position};
 };
 

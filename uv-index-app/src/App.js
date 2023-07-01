@@ -27,16 +27,23 @@ function App() {
     fetchWeather();
   },[query, units]);
   
+  //TODO: change the background based on the UV index color
 
   const formatBackground = () => {
-    if (!weather) return 'from-cyan-700 to-blu-700'
-    const threshold = units === 'metric' ? 20 : 60
-    if (weather.temp <= threshold) return 'from-cyan-700 to-blue-700'
-
-    return 'from-yellow-700 to-orange-700'
+    const uvMax = window.formattedCurrentUV?.uv_max.toFixed(1);
+    if (uvMax < 3) {
+      return 'from-green-400 to-green-900';
+    } else if (uvMax >= 3 && uvMax < 6) {
+      return 'from-yellow-300 to-yellow-800';
+    } else if (uvMax >= 6 && uvMax < 8) {
+      return 'from-orange-300 to-orange-800';
+    } else if (uvMax >= 8 && uvMax < 11) {
+      return 'from-red-400 to-red-900';
+    } else {
+      return 'from-purple-400 to-purple-900';    }
 
   }
-  
+
   return (
     // creating the screen with shadow top
     // TODO: add dynamic map features below daily forecast
@@ -52,9 +59,8 @@ function App() {
         <TemperatureAndDetails weather={weather}/>
 
         <Forecast title="hourly forecast"/>
-        <Forecast title="daily forecast"/>
 
-        <Map/>
+        <Map />
         
       </div>
       )}
