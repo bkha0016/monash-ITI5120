@@ -7,6 +7,7 @@ import {
     UilWind,
     UilSun,
     UilBrightnessPlus,
+    UilAdjustHalf,
     UilSunset,
 } from "@iconscout/react-unicons";
 import { formatToLocalTime, iconUrlFromCode, getFormattedWeatherData, convertTimeToHoursMinutes} from '../services/weatherService';
@@ -53,8 +54,15 @@ function TemperatureAndDetails({weather: {
 
             <div className='flex font-light text-sn 
             items-center justify-center'>
+                <UilAdjustHalf size={18} className="mr-1" />
+                Ozone Layer:
+                <span className='font-medium ml-1'>{window.formattedCurrentUV?.ozone}</span>
+            </div>
+
+            <div className='flex font-light text-sn 
+            items-center justify-center'>
                 <UilBrightnessPlus size={18} className="mr-1" />
-                UV Max Time:
+                Peak UV:
                 <span className='font-medium ml-1'>{convertTimeToHoursMinutes(window.formattedCurrentUV?.uv_max_time)}</span>
             </div>
         </div>
